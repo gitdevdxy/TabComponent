@@ -17,6 +17,7 @@ class TabComponentDemo extends Component {
     super(props);
     this.state = {
       selectedIndex: 3,
+      badges: [null, null, ' ', 99],
     }
   }
 
@@ -80,25 +81,26 @@ class TabComponentDemo extends Component {
             <TabBar.Item
               icon={require('./image/start_normall.png')}
               selectedIcon={require('./image/start_hightlight.png')}
+              badge={this.state.badges[0]}
               title='title1' >
             </TabBar.Item>
             <TabBar.Item
               icon={require('./image/start_normall.png')}
               selectedIcon={require('./image/start_hightlight.png')}
-              badge=' '
+              badge={this.state.badges[1]}
               title='title2' >
             </TabBar.Item>
             <TabBar.Item
               icon={require('./image/start_normall.png')}
               selectedIcon={require('./image/start_hightlight.png')}
-              badge={66}
+              badge={this.state.badges[2]}
               title='title3' >
             </TabBar.Item>
             <TabBar.Item
               selected={true}
               icon={require('./image/start_normall.png')}
               selectedIcon={require('./image/start_hightlight.png')}
-              badge={6}
+              badge={this.state.badges[3]}
               title='title3' >
             </TabBar.Item>
           </TabGroup>
@@ -109,6 +111,14 @@ class TabComponentDemo extends Component {
 
   onSelectedChange(index) {
     this.viewPager.setPage(index);
+
+    let _badges = this.state.badges;
+    if(_badges[index] !== null) {
+      _badges[index] = null;
+      this.setState({
+        badges: _badges,
+      });
+    }
   }
 }
 
